@@ -44,6 +44,8 @@ const accentGradients = [
   "from-amber-100 via-rose-50 to-pink-100",
 ];
 
+const HEART_COUNT = 28;
+
 function pickRandomAffirmation(
   current: string | null,
   randomizer: () => number = Math.random,
@@ -54,12 +56,12 @@ function pickRandomAffirmation(
 }
 
 function createHearts(randomizer: () => number = Math.random): Heart[] {
-  return Array.from({ length: 16 }, (_, id) => {
-    const size = 16 + randomizer() * 22;
+  return Array.from({ length: HEART_COUNT }, (_, id) => {
+    const size = 16 + randomizer() * 28;
     return {
       id,
       left: `${randomizer() * 100}%`,
-      start: `${50 + randomizer() * 30}%`,
+      start: `${55 + randomizer() * 60}%`,
       size,
       duration: 9 + randomizer() * 6,
       delay: randomizer() * 5,
@@ -125,11 +127,11 @@ export default function Home() {
               animationDelay: `${heart.delay}s`,
               filter: `hue-rotate(${heart.hue}deg) drop-shadow(0 6px 12px rgba(244,114,182,0.15))`,
             }}
-          >
-            <svg
-              aria-hidden
-              viewBox="0 0 24 24"
-              className="h-full w-full text-rose-400 opacity-80"
+      >
+        <svg
+          aria-hidden
+          viewBox="0 0 24 24"
+          className="h-full w-full text-rose-400 opacity-80"
             >
               <path
                 fill="currentColor"
@@ -141,51 +143,24 @@ export default function Home() {
       </div>
 
       <main
-        className={`relative z-10 w-full max-w-3xl rounded-[28px] border border-white/60 bg-white/70 px-8 py-10 shadow-[0_25px_120px_rgba(244,114,182,0.35)] backdrop-blur-2xl sm:px-12`}
+        className={`relative z-10 flex w-full max-w-3xl flex-col items-center gap-8 rounded-[28px] border border-white/60 bg-white/75 px-8 py-12 text-center shadow-[0_25px_120px_rgba(244,114,182,0.35)] backdrop-blur-2xl sm:px-12`}
       >
-        <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.28em] text-rose-500">
-          <div className="h-[1px] flex-1 bg-rose-200/80" />
-          <span className={`${spaceGrotesk.className} whitespace-nowrap`}>
-            Daily sparkle
-          </span>
-          <div className="h-[1px] flex-1 bg-rose-200/80" />
-        </div>
-
-        <h1
-          className={`${playfair.className} mt-6 text-balance text-4xl font-semibold leading-tight text-rose-900 sm:text-5xl`}
-        >
-          Positive affirmation just for you
-        </h1>
-
-        <p
-          className={`${spaceGrotesk.className} mt-4 text-lg leading-relaxed text-rose-900/80 sm:text-xl`}
-        >
-          Breathe in, read slowly, and let these words hug your heart.
-        </p>
-
-        <div className="mt-10 rounded-2xl border border-rose-100 bg-white/80 p-6 shadow-[0_20px_60px_rgba(255,182,193,0.35)] transition hover:-translate-y-0.5 hover:shadow-[0_24px_70px_rgba(255,182,193,0.45)]">
+        <div className="mt-2 w-full rounded-2xl border border-rose-100 bg-white/85 p-8 shadow-[0_20px_60px_rgba(255,182,193,0.35)] transition hover:-translate-y-0.5 hover:shadow-[0_24px_70px_rgba(255,182,193,0.45)]">
           <p
-            className={`${playfair.className} text-pretty text-2xl font-semibold leading-snug text-rose-800 sm:text-3xl`}
+            className={`${playfair.className} text-balance text-3xl font-semibold leading-snug text-rose-800 sm:text-4xl`}
           >
             “{message}”
           </p>
         </div>
 
-        <div className="mt-8 flex flex-wrap items-center gap-4">
-          <button
-            type="button"
-            onClick={shuffle}
-            className={`${spaceGrotesk.className} inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-rose-500 via-pink-500 to-fuchsia-500 px-6 py-3 text-sm font-semibold text-white shadow-[0_16px_50px_rgba(236,72,153,0.45)] transition hover:scale-[1.02] hover:shadow-[0_18px_60px_rgba(236,72,153,0.55)] active:scale-[0.99]`}
-          >
-            New affirmation
-            <span className="text-lg">✧</span>
-          </button>
-          <p
-            className={`${spaceGrotesk.className} text-sm text-rose-900/70`}
-          >
-            Fresh words & floating hearts every tap.
-          </p>
-        </div>
+        <button
+          type="button"
+          onClick={shuffle}
+          className={`${spaceGrotesk.className} inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-rose-500 via-pink-500 to-fuchsia-500 px-7 py-3.5 text-sm font-semibold text-white shadow-[0_16px_50px_rgba(236,72,153,0.45)] transition hover:scale-[1.02] hover:shadow-[0_18px_60px_rgba(236,72,153,0.55)] active:scale-[0.99]`}
+        >
+          New affirmation
+          <span className="text-lg">✧</span>
+        </button>
       </main>
     </div>
   );
