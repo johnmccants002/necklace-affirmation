@@ -44,7 +44,7 @@ const accentGradients = [
   "from-amber-100 via-rose-50 to-pink-100",
 ];
 
-const HEART_COUNT = 28;
+const HEART_COUNT = 32;
 
 function pickRandomAffirmation(
   current: string | null,
@@ -57,11 +57,11 @@ function pickRandomAffirmation(
 
 function createHearts(randomizer: () => number = Math.random): Heart[] {
   return Array.from({ length: HEART_COUNT }, (_, id) => {
-    const size = 16 + randomizer() * 28;
+    const size = 18 + randomizer() * 28;
     return {
       id,
       left: `${randomizer() * 100}%`,
-      start: `${55 + randomizer() * 60}%`,
+      start: `${35 + randomizer() * 80}%`,
       size,
       duration: 9 + randomizer() * 6,
       delay: randomizer() * 5,
@@ -143,15 +143,13 @@ export default function Home() {
       </div>
 
       <main
-        className={`relative z-10 flex w-full max-w-3xl flex-col items-center gap-8 rounded-[28px] border border-white/60 bg-white/75 px-8 py-12 text-center shadow-[0_25px_120px_rgba(244,114,182,0.35)] backdrop-blur-2xl sm:px-12`}
+        className={`relative z-10 flex w-full max-w-3xl flex-col items-center gap-10 rounded-[28px] border border-white/30 bg-white/40 px-8 py-12 text-center shadow-[0_25px_120px_rgba(244,114,182,0.25)] backdrop-blur-2xl sm:px-12`}
       >
-        <div className="mt-2 w-full rounded-2xl border border-rose-100 bg-white/85 p-8 shadow-[0_20px_60px_rgba(255,182,193,0.35)] transition hover:-translate-y-0.5 hover:shadow-[0_24px_70px_rgba(255,182,193,0.45)]">
-          <p
-            className={`${playfair.className} text-balance text-3xl font-semibold leading-snug text-rose-800 sm:text-4xl`}
-          >
-            “{message}”
-          </p>
-        </div>
+        <p
+          className={`${playfair.className} mt-2 text-balance text-3xl font-semibold leading-snug text-rose-800 drop-shadow-[0_6px_18px_rgba(255,255,255,0.8)] sm:text-4xl`}
+        >
+          “{message}”
+        </p>
 
         <button
           type="button"
